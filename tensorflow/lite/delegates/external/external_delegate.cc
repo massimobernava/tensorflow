@@ -36,8 +36,7 @@ struct ExternalLib {
   // Open a given delegate library and load the create/destroy symbols
   bool load(const std::string library) {
 #if defined(_WIN32)
-    void* handle = SharedLibrary::LoadLibrary(
-        converter.from_bytes(library.c_str()).c_str());
+    void* handle = SharedLibrary::LoadLibrary(library.c_str());
 #else
     void* handle = SharedLibrary::LoadLibrary(library.c_str());
 #endif  // defined(_WIN32)
