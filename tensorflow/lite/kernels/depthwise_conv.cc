@@ -20,6 +20,12 @@ limitations under the License.
 
 #include <vector>
 
+#ifndef __PRETTY_FUNCTION__
+#if defined(_WIN32)
+#define __PRETTY_FUNCTION__ __FUNCSIG__ 
+#endif
+#endif
+
 #include "tensorflow/lite/c/builtin_op_data.h"
 #include "tensorflow/lite/c/common.h"
 #include "tensorflow/lite/kernels/cpu_backend_context.h"

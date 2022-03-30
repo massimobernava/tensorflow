@@ -20,6 +20,12 @@ limitations under the License.
 #include <algorithm>
 #include <vector>
 
+#ifndef __PRETTY_FUNCTION__
+#if defined(_WIN32)
+#define __PRETTY_FUNCTION__ __FUNCSIG__ 
+#endif
+#endif
+
 #include "ruy/profiler/instrumentation.h"  // from @ruy
 #include "tensorflow/lite/kernels/cpu_backend_context.h"
 #include "tensorflow/lite/kernels/cpu_backend_threadpool.h"

@@ -36,8 +36,7 @@ add_subdirectory(
 
 set(CMAKE_CXX_STANDARD 11)
 
-if(CMAKE_SYSTEM_NAME MATCHES "Windows"
-    AND (MSVC AND (CMAKE_SIZEOF_VOID_P EQUAL 4)))
+if(CMAKE_SYSTEM_NAME MATCHES "Windows" AND (MSVC AND (CMAKE_SIZEOF_VOID_P EQUAL 4)))
   message("Disabling MSVC /O2 optimization for Win32")
   set(CompFlags
     CMAKE_CXX_FLAGS_RELEASE
@@ -63,7 +62,7 @@ endif()
 add_library(tensorflowlite_c ${TFLITE_C_LIBTYPE}
   builtin_op_data.h
   common.h
-  common.c
+  common.cc
   c_api_types.h
   c_api.h
   c_api.cc
@@ -83,5 +82,4 @@ if (TFLITE_C_BUILD_SHARED_LIBS)
 endif()
 
 target_link_libraries(tensorflowlite_c
-  tensorflow-lite
-)
+  tensorflow-lite )
