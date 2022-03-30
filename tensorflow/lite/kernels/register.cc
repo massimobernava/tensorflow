@@ -28,6 +28,9 @@ TfLiteRegistration* Register_NUMERIC_VERIFY();
 TfLiteRegistration* Register_AUDIO_SPECTROGRAM();
 TfLiteRegistration* Register_MFCC();
 TfLiteRegistration* Register_DETECTION_POSTPROCESS();
+TfLiteRegistration* RegisterMaxPoolingWithArgmax2D();
+TfLiteRegistration* RegisterMaxUnpooling2D();
+TfLiteRegistration* RegisterConvolution2DTransposeBias();
 
 }  // namespace custom
 
@@ -170,7 +173,7 @@ BuiltinOpResolver::BuiltinOpResolver() {
              /* max_version = */ 2);
   AddBuiltin(BuiltinOperator_CAST, Register_CAST(),
              /* min_version = */ 1,
-             /* max_version = */ 4);
+             /* max_version = */ 3);
   AddBuiltin(BuiltinOperator_DEQUANTIZE, Register_DEQUANTIZE(),
              /* min_version = */ 1,
              /* max_version = */ 5);
@@ -350,6 +353,11 @@ BuiltinOpResolver::BuiltinOpResolver() {
             tflite::ops::custom::Register_AUDIO_SPECTROGRAM());
   AddCustom("TFLite_Detection_PostProcess",
             tflite::ops::custom::Register_DETECTION_POSTPROCESS());
+
+  AddCustom("MaxPoolingWithArgmax2D", tflite::ops::custom::RegisterMaxPoolingWithArgmax2D());
+  AddCustom("MaxUnpooling2D", tflite::ops::custom::RegisterMaxUnpooling2D());
+  AddCustom("Convolution2DTransposeBias", tflite::ops::custom::RegisterConvolution2DTransposeBias());
+
   // By definition, all of the ops added above are not user-defined ops,
   // since they are supported by BuiltinOpResolver.
   may_directly_contain_user_defined_ops_ = false;
